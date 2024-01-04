@@ -15,14 +15,12 @@ Barry_1_ retrieves JSON data from a dynamic URL that requires authentication. Th
 
 ## User Stories
 
-1. Get yourself python environment, clone this repository, create secret.txt file with space-track.org credentials in same dir as main.py, edit that file: first line = username, second is password. Run main.py.
+1. Get yourself python environment, clone this repository, create secret.txt file with space-track.org credentials in same dir as main.py, edit that file: first line = username, second is password. Run main.py with command: python main.py
 2. By default, the app uses NORAD catalog ID 58338 to retrieve data.
-3. Users can specify custom date ranges for satellite data queries.
-4. The app handles authentication and data retrieval in a secure manner.
-5. JSON data is parsed according to the structure provided in an `example.json` file.
-6. The chart plotting feature visualizes 'APOAPSIS' and 'PERIAPSIS' against time.
+3. User can specify custom date ranges for satellite data queries, if you un-comment 2 lines in main.py
+4. The chart plotting feature visualizes 'APOAPSIS' and 'PERIAPSIS' against time.
 
-## Technologies Used
+## Technologies Used (requirements.txt)
 
 - Python programming language
 - The `Requests` library for HTTP requests
@@ -44,7 +42,7 @@ Before running the application, ensure you have Python and all required librarie
 To run the application:
 
 1. Execute `auth_manager.py` to make sure authentication works.
-2. Run `main.py` to fetch and display the satellite data.
+2. Run `python main.py` to fetch and display the satellite data.
 
 
 ## Contributing
