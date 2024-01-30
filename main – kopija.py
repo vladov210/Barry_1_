@@ -6,8 +6,7 @@ from auth_manager import authenticate
 from datetime import datetime
 from data_parser import parse_satellite_data
 from plotter import plot_data
-start_date_str = '2023-11-20' #input("Enter start date (YYYY-MM-DD): ") 
-end_date_str = datetime.now().strftime('%Y-%m-%d')
+
 DATA_URL_TEMPLATE = 'https://www.space-track.org/basicspacedata/query/class/gp_history/NORAD_CAT_ID/58338/orderby/TLE_LINE1%20ASC/EPOCH/{start_date}--{end_date}/format/json'
 
 def get_date_range():
@@ -17,32 +16,32 @@ def get_date_range():
     """
     ## dummy = input("Confirm, that you are logged in Spacetrack")
     date_format = "%Y-%m-%d"
-    start_date_str = '2023-11-20' #input("Enter start date (YYYY-MM-DD): ") 
-    #end_date_str = '2023-11-30' #input("Enter end date (YYYY-MM-DD): ")
-    end_date_str = datetime.now().strftime('%Y-%m-%d')
+    start_date = '2023-11-20' #input("Enter start date (YYYY-MM-DD): ") 
+    #end_date = '2023-11-30' #input("Enter end date (YYYY-MM-DD): ")
+    end_date = datetime.now().strftime('%Y-%m-%d')
 
     try:
-        datetime.strptime(start_date_str, date_format)
-        datetime.strptime(end_date_str, date_format)
+        datetime.strptime(start_date, date_format)
+        datetime.strptime(end_date, date_format)
     except ValueError:
         raise ValueError("Input date format is incorrect, should be YYYY-MM-DD")
 
-    return start_date_str, end_date_str
+    return start_date, end_date
 
-def build_data_url(start_date_str, end_date_str):
+def build_data_url(start_date, end_date):
     """
     Builds the data URL with the specified start and end dates.
     """
-    url = DATA_URL_TEMPLATE.format(start_date=start_date_str, end_date=end_date_str)
+    url = DATA_URL_TEMPLATE.format(start_date=start_date, end_date=end_date)
     return url
     
-def retrieve_data(start_date_str, end_date_str):
+def retrieve_data(start_date, end_date):
     """
     Retrieves data from the Space-Track API for the given date range.
     """
     cookies = authenticate()
     if cookies is not None:
-        data_url = build_data_url(start_date_str, end_date_str)
+        data_url = build_data_url(start_date, end_date)
         response = requests.get(data_url, cookies=cookies)
         if response.status_code == 200:
             print("Data retrieval successful")
